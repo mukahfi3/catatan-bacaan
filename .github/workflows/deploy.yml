@@ -1,0 +1,84 @@
+name: CI/CD Catatan Bacaan
+
+# Jalan setiap ada push ke branch main
+on:
+  push:
+    branches: [main]
+
+# Izin default: baca repo saja
+permissions:
+  contents: read
+
+# Deploy yang bersamaan diantre, bukan dibatalkan
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI - cek file dan validasi HTML
+    runs-on: ubuntu-latest
+    steps:
+      # Ambil isi repo
+      - name: Ambil kode dari repo
+        uses: actions/checkout@v7
+
+      # Gagal kalau index.html atau style.css tidak ada
+      - name: Cek file wajib ada
+        run: |
+          for f in index.html style.css; do
+            if [ ! -f "$f" ]; then
+              echo "::error::File $f tidak ditemukan"
+              exit 1
+            fi
+            echo "OK: $f ada"
+          done
+
+      # html-validate dijalankan lewat npx, jadi butuh Node.js
+      - name: Siapkan Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
+      # Validasi index.html dengan aturan html-validate:recommended
+      - name: Validasi HTML
+        run: |
+          echo '{"extends":["html-validate:recommended"]}' > "$RUNNER_TEMP/htmlvalidate.json"
+          npx --yes html-validate --config "$RUNNER_TEMP/htmlvalidate.json" index.html
+
+  deploy:
+    name: CD - deploy ke GitHub Pages
+    needs: ci # hanya jalan kalau ci lolos
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Tiap job jalan di mesin baru, jadi kode diambil lagi
+      - name: Ambil kode dari repo
+        uses: actions/checkout@v7
+
+      # Salin hanya file website, supaya .github tidak ikut terbit
+      - name: Siapkan folder _site
+        run: |
+          mkdir _site
+          cp index.html style.css _site/
+
+      # Atur Pages untuk repo ini
+      - name: Atur GitHub Pages
+        uses: actions/configure-pages@v6
+
+      # Bungkus folder _site jadi artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      # Terbitkan artifact ke GitHub Pages
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
