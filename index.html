@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catatan Pinggir Halaman - Kahfi</title>
+  <meta name="description" content="Catatan buku yang sudah dan sedang dibaca Kahfi, mahasiswa Sistem Informasi.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%232E5E4A'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&amp;family=Young+Serif&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap top-grid">
+      <h1>Catatan pinggir halaman</h1>
+      <p class="intro">Tempat aku mencatat buku yang sudah dan sedang kubaca. Isinya masih sedikit dan akan bertambah pelan-pelan.</p>
+      <dl class="tally">
+        <div>
+          <dt>Selesai dibaca</dt>
+          <dd>2</dd>
+        </div>
+        <div>
+          <dt>Sedang dibaca</dt>
+          <dd>1</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- Punggung buku hiasan, dibuat dari CSS -->
+  <div class="wrap">
+    <div class="spines" aria-hidden="true">
+      <div class="spine s-a">Sebuah Seni untuk Bersikap Bodo Amat</div>
+      <div class="spine blank b-1"></div>
+      <div class="spine s-b">Atomic Habits</div>
+      <div class="spine blank b-2"></div>
+      <div class="spine blank b-3"></div>
+      <div class="spine s-c">The Let Them Theory</div>
+      <div class="spine blank b-4"></div>
+      <div class="spine blank b-5 extra"></div>
+      <div class="spine blank b-6 extra"></div>
+      <div class="spine blank b-7 extra"></div>
+      <div class="spine blank b-8 extra"></div>
+      <div class="spine blank b-9 extra"></div>
+      <div class="spine blank b-10 extra"></div>
+      <div class="spine blank b-11 extra"></div>
+      <div class="spine blank b-12 extra"></div>
+    </div>
+  </div>
+
+  <main>
+    <section class="wrap catalog" aria-labelledby="h-daftar">
+      <h2 id="h-daftar">Daftar bacaan</h2>
+
+      <!--
+        Tambah buku: salin satu <article> utuh, tempel di bawah buku terakhir,
+        lalu ganti judul, penulis, dan isinya.
+        Buku yang masih dibaca pakai class "status" dan tanpa blok .rating.
+        Buku yang selesai pakai "status is-done" dan isi rating.
+        Angka di ringkasan atas ikut diubah manual.
+      -->
+
+      <article class="entry">
+        <div class="entry-meta">
+          <p class="status is-done">Selesai dibaca</p>
+          <p class="rating"><span class="rating-label">Rating</span> 4,8<span class="rating-max">/5</span></p>
+        </div>
+        <div class="entry-main">
+          <h3>Sebuah Seni untuk Bersikap Bodo Amat</h3>
+          <p class="author">Mark Manson</p>
+          <p class="about">Buku pengembangan diri tentang memilih hal-hal yang layak dipedulikan dalam hidup.</p>
+          <dl class="note">
+            <dt>Catatan</dt>
+            <dd>Bagus untuk belajar memilih hal yang layak dipedulikan.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <p class="status is-done">Selesai dibaca</p>
+          <p class="rating"><span class="rating-label">Rating</span> 5<span class="rating-max">/5</span></p>
+        </div>
+        <div class="entry-main">
+          <h3>Atomic Habits</h3>
+          <p class="author">James Clear</p>
+          <p class="about">Buku tentang cara membentuk kebiasaan baik dan meninggalkan kebiasaan buruk lewat perubahan kecil.</p>
+          <dl class="note">
+            <dt>Catatan</dt>
+            <dd>Membantu membentuk kebiasaan baik dan meninggalkan kebiasaan buruk.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-meta">
+          <p class="status">Sedang dibaca</p>
+        </div>
+        <div class="entry-main">
+          <h3>The Let Them Theory</h3>
+          <p class="author">Mel Robbins</p>
+          <p class="about">Buku pengembangan diri tentang membiarkan orang lain bersikap sesuai pilihannya, lalu fokus pada hal yang bisa kita atur sendiri.</p>
+          <dl class="note">
+            <dt>Catatan</dt>
+            <dd>Cukup bagus untuk membantu membedakan mana yang bisa dikontrol dan mana yang tidak.</dd>
+          </dl>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <p>Kahfi, 2026</p>
+      <p>Dibuat dengan HTML dan CSS.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
